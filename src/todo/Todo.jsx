@@ -3,12 +3,22 @@ import React, { useState } from "react";
 export default function Todo(props) {
   return (
     <div className="mt-7">
-      <div className="flex items-center justify-center">
-        <li className=" w-60 flex items-center justify-between bg-white h-8 pl-2">
+      <div className="flex items-center justify-center ">
+        <li
+          className={`w-60 flex items-center justify-between pl-2 bg-white h-8 ${
+            props.completed ? "opacity-60 line-through transition-all" : ""
+          }`}
+        >
           {props.title}
         </li>
         <div className="flex">
-          <button className="w-8 h-8 bg-indigo-400 flex justify-center items-center">
+          {/* icon tick */}
+          <button
+            className="w-8 h-8 bg-indigo-400 flex justify-center items-center"
+            onClick={() => {
+              props.onEdit(props.id);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -23,8 +33,14 @@ export default function Todo(props) {
                 d="m4.5 12.75 6 6 9-13.5"
               />
             </svg>{" "}
+            {/* icon trash */}
           </button>
-          <button className="bg-violet-900 w-8 h-8 flex justify-center items-center ">
+          <button
+            className="bg-violet-900 w-8 h-8 flex justify-center items-center "
+            onClick={() => {
+              props.onRemove(props.id);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
